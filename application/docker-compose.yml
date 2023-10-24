@@ -1,0 +1,28 @@
+version: '2.1'
+
+networks:
+  fabric_network:
+    external:
+      name: fabric_network
+
+services:
+  # Backend service
+  fabric-realty.server:
+    image: togettoyou/fabric-realty.server:latest
+    container_name: fabric-realty.server
+    ports:
+      - "8888:8888"
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/usr/share/zoneinfo/Asia/Shanghai
+      - ./../network/crypto-config:/network/crypto-config
+    networks:
+      - fabric_network
+
+  # Frontend service
+  fabric-realty.web:
+    image: togettoyou/fabric-realty.web:latest
+    container_name: fabric-realty.web
+    ports:
+      - "8000:80"
+    networks:
+      - fabric_network

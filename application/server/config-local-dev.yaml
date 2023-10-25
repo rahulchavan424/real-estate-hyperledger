@@ -1,17 +1,17 @@
 version: 1.0.0
 
-# GO SDK使用的客户端部分。
+# Client part used by the GO SDK.
 client:
-  # 客户端所属的组织，必须是organizations定义的组织
+  # The organization to which the client belongs, must be one of the organizations defined.
   organization: JD
-  # 日志级别
+  # Log level
   logging:
     level: info
-  # MSP证书的根路径
+  # Root path for MSP certificates
   cryptoconfig:
     path: ./../../network/crypto-config
 
-# 通道定义
+# Channel definition
 channels:
   appchannel:
     orderers:
@@ -28,7 +28,7 @@ channels:
         ledgerQuery: true
         eventSource: true
 
-# 组织配置
+# Organization configurations
 organizations:
   JD:
     mspid: "JDMSP"
@@ -37,11 +37,11 @@ organizations:
       - peer0.jd.com
       - peer1.jd.com
 
-# orderer节点列表
+# Orderer node list
 orderers:
   orderer.qq.com:
     url: 127.0.0.1:7050
-    # 传递给gRPC客户端构造函数
+    # Passed to the gRPC client constructor
     grpcOptions:
       ssl-target-name-override: orderer.qq.com
       keep-alive-time: 0s
@@ -50,13 +50,13 @@ orderers:
       fail-fast: false
       allow-insecure: true
 
-# peers节点列表
+# Peer node list
 peers:
-  # peer节点定义，可以定义多个
+  # Define peer nodes, you can define multiple
   peer0.jd.com:
-    # URL用于发送背书和查询请求
+    # URL for sending endorsement and query requests
     url: 127.0.0.1:27051
-    # 传递给gRPC客户端构造函数
+    # Passed to the gRPC client constructor
     grpcOptions:
       ssl-target-name-override: peer0.jd.com
       keep-alive-time: 0s

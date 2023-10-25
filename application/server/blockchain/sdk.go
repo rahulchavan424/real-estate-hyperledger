@@ -9,7 +9,7 @@ import (
 // Configuration information
 var (
 	sdk           *fabsdk.FabricSDK                              // Fabric SDK
-	configPath    = "config.yaml"                                // Configuration file path
+	configPath    = "config-local-dev.yaml"                                // Configuration file path
 	channelName   = "appchannel"                                 // Channel name
 	user          = "Admin"                                      // User
 	chainCodeName = "fabric-realty"                              // Chaincode name

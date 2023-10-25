@@ -1,12 +1,24 @@
-## 如改动代码需要自行编译后再使用 Docker 部署
+## Code Changes Require Self-Compilation Before Docker Deployment
 
-后端：进入 `server` 执行 `./build.sh` ，并在 `docker-compose.yml` 配置本地镜像：`fabric-realty.server:latest`
+Backend:
 
-前端：进入 `web` 执行 `./build.sh` ，并在 `docker-compose.yml` 配置本地镜像：`fabric-realty.web:latest`
+1. Navigate to the 'server' directory and run `./build.sh`.
+2. In the 'docker-compose.yml' file, configure the local image as follows: `fabric-realty.server:latest`.
 
-## 支持本地开发模式
+Frontend:
 
-后端：更改 `server/blockchain/sdk.go` 中的配置文件路径为 `configPath = "config-local-dev.yaml"` 后，执行 `go run main.go`
+1. Go to the 'web' directory and execute `./build.sh`.
+2. In the 'docker-compose.yml' file, configure the local image as follows: `fabric-realty.web:latest`.
 
-前端：更改 `web/vue.config.js` 中的后端接口地址 `http://127.0.0.1:8888` 后，执行 `yarn install`
-下载依赖，执行 `yarn run dev`
+## Support for Local Development Mode
+
+Backend:
+
+1. Change the configuration file path in `server/blockchain/sdk.go` to `configPath = "config-local-dev.yaml"`.
+2. Execute `go run main.go`.
+
+Frontend:
+
+1. Modify the backend API address in `web/vue.config.js` to `http://127.0.0.1:8888`.
+2. Run `yarn install` to download dependencies.
+3. Execute `yarn run dev` to start the development server.

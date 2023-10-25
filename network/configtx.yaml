@@ -1,15 +1,15 @@
-# 定义组织机构实体
+# Define Organization Entities
 Organizations:
   - &QQ
-    Name: QQ # 组织的名称
-    ID: QQMSP # 组织的 MSPID
-    MSPDir: crypto-config/ordererOrganizations/qq.com/msp #组织的证书相对位置（生成的crypto-config目录)
+    Name: QQ # Name of the organization
+    ID: QQMSP # MSPID of the organization
+    MSPDir: crypto-config/ordererOrganizations/qq.com/msp # Relative path to the organization's certificates (generated in the crypto-config directory)
 
   - &Taobao
     Name: Taobao
     ID: TaobaoMSP
     MSPDir: crypto-config/peerOrganizations/taobao.com/msp
-    AnchorPeers: # 组织锚节点的配置
+    AnchorPeers: # Configuration for organization's anchor peers
       - Host: peer0.taobao.com
         Port: 7051
 
@@ -17,34 +17,34 @@ Organizations:
     Name: JD
     ID: JDMSP
     MSPDir: crypto-config/peerOrganizations/jd.com/msp
-    AnchorPeers: # 组织锚节点的配置
+    AnchorPeers: # Configuration for organization's anchor peers
       - Host: peer0.jd.com
         Port: 7051
 
-# 定义了排序服务的相关参数，这些参数将用于创建创世区块
+# Define parameters related to the orderer service, which will be used to create the genesis block
 Orderer: &OrdererDefaults
-  # 排序节点类型用来指定要启用的排序节点实现，不同的实现对应不同的共识算法
-  OrdererType: solo # 共识机制
-  Addresses: # Orderer 的域名（用于连接）
+  # OrdererType specifies the type of orderer node to enable, different implementations correspond to different consensus algorithms
+  OrdererType: solo # Consensus mechanism
+  Addresses: # Orderer's domain names (used for connection)
     - orderer.qq.com:7050
-  BatchTimeout: 2s # 出块时间间隔
-  BatchSize: # 用于控制每个block的信息量
-    MaxMessageCount: 10 #每个区块的消息个数
-    AbsoluteMaxBytes: 99 MB #每个区块最大的信息大小
-    PreferredMaxBytes: 512 KB #每个区块包含的一条信息最大长度
+  BatchTimeout: 2s # Time interval for creating blocks
+  BatchSize: # Used to control the amount of information in each block
+    MaxMessageCount: 10 # Number of messages per block
+    AbsoluteMaxBytes: 99 MB # Maximum size of each block's information
+    PreferredMaxBytes: 512 KB # Maximum length of a single message included in each block
   Organizations:
 
-# 定义Peer组织如何与应用程序通道交互的策略
-# 默认策略：所有Peer组织都将能够读取数据并将数据写入账本
+# Define how Peer organizations interact with the application channel
+# Default policy: All Peer organizations can read and write data to the ledger
 Application: &ApplicationDefaults
   Organizations:
 
-# 用来定义用于 configtxgen 工具的配置入口
-# 将 Profile 参数（ TwoOrgsOrdererGenesis 或 TwoOrgsChannel ）指定为 configtxgen 工具的参数
+# Define the configuration entry for the configtxgen tool
+# Specify the Profile parameter (TwoOrgsOrdererGenesis or TwoOrgsChannel) as a parameter for the configtxgen tool
 Profiles:
-  #  TwoOrgsOrdererGenesis配置文件用于创建系统通道创世块
-  #  该配置文件创建一个名为SampleConsortium的联盟
-  #  该联盟在configtx.yaml文件中包含两个Peer组织Taobao和JD
+  # TwoOrgsOrdererGenesis configuration file is used to create the system channel's genesis block
+  # This configuration file creates a consortium named SampleConsortium
+  # The consortium in this configtx.yaml file consists of two Peer organizations: Taobao and JD
   TwoOrgsOrdererGenesis:
     Orderer:
       <<: *OrdererDefaults
@@ -55,7 +55,7 @@ Profiles:
         Organizations:
           - *Taobao
           - *JD
-  # 使用TwoOrgsChannel配置文件创建应用程序通道
+  # Use the TwoOrgsChannel configuration file to create the application channel
   TwoOrgsChannel:
     Consortium: SampleConsortium
     Application:

@@ -38,7 +38,7 @@ module.exports = {
     },
     proxy: {
           '/api': {
-              target: "http://127.0.0.1:5000", // Used during local development to connect to the backend interface
+              target: "http://127.0.0.1:8888", // Used during local development to connect to the backend interface
               changeOrigin: true,
           }
     }

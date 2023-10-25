@@ -20,9 +20,6 @@
           <el-dropdown-item>
             Balance: ${{ balance }}
           </el-dropdown-item>
-          <a target="_blank" href="https://github.com/togettoyou/fabric-realty">
-            <el-dropdown-item>Project Repository</el-dropdown-item>
-          </a>
           <el-dropdown-item divided @click.native="logout">
             <span style="display:block;">Switch Account</span>
           </el-dropdown-item>

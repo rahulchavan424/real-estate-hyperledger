@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'; // You need to set up Redux for state management
 
-function AllSelling() {
+function MeSelling() {
   const dispatch = useDispatch();
   const accountId = useSelector((state) => state.account.accountId); // Assuming you have Redux state
-  const roles = useSelector((state) => state.account.roles); // Replace with your Redux state structure
   const userName = useSelector((state) => state.account.userName); // Replace with your Redux state structure
   const balance = useSelector((state) => state.account.balance); // Replace with your Redux state structure
 
@@ -22,15 +21,18 @@ function AllSelling() {
       }, 1000);
     };
 
-    // Fetch selling list
+    // Fetch the selling list
     fetchSellingList();
   }, []);
 
-  const createSellingByBuy = (item) => {
-    // Validation and API call logic goes here
-  };
-
   const updateSelling = (item, type) => {
+    let tip = '';
+    if (type === 'done') {
+      tip = 'Confirm Payment';
+    } else {
+      tip = 'Cancel Operation';
+    }
+
     // Validation and API call logic goes here
   };
 
@@ -55,12 +57,10 @@ function AllSelling() {
             className="el-col"
             style={{ flex: '0 0 25%', marginRight: '8px' }}
           >
-            <div className="all-card">
+            <div className="me-card">
               <div className="clearfix" style={{ marginBottom: '10px' }}>
                 <span>{val.sellingStatus}</span>
-                {roles[0] !== 'admin' &&
-                (val.seller === accountId || val.buyer === accountId) &&
-                val.sellingStatus !== 'Completed' &&
+                {val.sellingStatus !== 'Completed' &&
                 val.sellingStatus !== 'Expired' &&
                 val.sellingStatus !== 'Cancelled' && (
                   <button
@@ -70,24 +70,12 @@ function AllSelling() {
                     Cancel
                   </button>
                 )}
-                {roles[0] !== 'admin' &&
-                val.seller === accountId &&
-                val.sellingStatus === 'In Progress' && (
+                {val.sellingStatus === 'In Progress' && (
                   <button
                     type="button"
                     onClick={() => updateSelling(val, 'done')}
                   >
                     Confirm Payment
-                  </button>
-                )}
-                {roles[0] !== 'admin' &&
-                val.sellingStatus === 'On Sale' &&
-                val.seller !== accountId && (
-                  <button
-                    type="button"
-                    onClick={() => createSellingByBuy(val)}
-                  >
-                    Buy
                   </button>
                 )}
               </div>
@@ -102,7 +90,7 @@ function AllSelling() {
               </div>
               <div className="item">
                 <el-tag type="danger">Price: </el-tag>
-                <span>$ {val.price}</span>
+                <span>$ {val.price} </span>
               </div>
               <div className="item">
                 <el-tag type="warning">Validity Period: </el-tag>
@@ -126,4 +114,4 @@ function AllSelling() {
   );
 }
 
-export default AllSelling;
+export default MeSelling;

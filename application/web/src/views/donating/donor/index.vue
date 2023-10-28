@@ -23,7 +23,7 @@
             <el-tag type="success">Donor ID: </el-tag>
             <span>{{ val.donor }}</span>
           </div>
-          <div class "item">
+          <div class="item">
             <el-tag type="danger">Recipient ID: </el-tag>
             <span>{{ val.grantee }}</span>
           </div>

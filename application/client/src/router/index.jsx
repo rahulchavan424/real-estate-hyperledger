@@ -16,7 +16,7 @@ function AppRouter() {
   return (
     <Router>
         <Routes>
-          <Route path="/realestate" component={RealEstate} />
+          <Route path="/realestate" element={<RealEstate />} />
           <Route path="/selling/all" component={AllSelling} />
           <Route path="/selling/me" component={MeSelling} />
           <Route path="/selling/buy" component={BuySelling} />

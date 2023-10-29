@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import Login from '../views/login';
 import RealEstate from '../views/realestate/list';
 import AllSelling from '../views/selling/all';
 import MeSelling from '../views/selling/me';
@@ -24,7 +25,7 @@ function AppRouter() {
           <Route path="/donating/grantee" component={DonatingGrantee} />
           <Route path="/addRealestate" component={AddRealEstate} />
           <Route path="/404" component={NotFound} />
-          <Route exact path="/" element={<RealEstate />} />
+          <Route exact path="/" element={<Login />} />
           <Route path="*" component={NotFound} />
         </Routes>
     </Router>

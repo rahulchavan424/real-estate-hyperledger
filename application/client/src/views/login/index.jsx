@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { queryAccountList } from '../../api/account';
 
 function Login() {
   const [loading, setLoading] = useState(false);
   const [redirect, setRedirect] = useState(undefined);
   const [accountList, setAccountList] = useState([]);
   const [value, setValue] = useState('');
-
-  const queryAccountList = () => {
-    // Simulate the API call for querying account list
-    // Replace this with your actual API call
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve([]);
-      }, 1000);
-    });
-  };
 
   const handleLogin = () => {
     if (value) {
@@ -32,8 +23,8 @@ function Login() {
     }
   };
 
-  const selectGet = (accountId) => {
-    setValue(accountId);
+  const selectGet = (e) => {
+    setValue(e.target.value);
   };
 
   useEffect(() => {
@@ -48,11 +39,11 @@ function Login() {
 
   return (
     <div className="login-container">
-      <div className="login-form" autoComplete="on" labelPosition="left">
+      <div className="login-form" autoComplete="on">
         <div className="title-container">
           <h3 className="title">Real Estate Transaction System Based on Blockchain</h3>
         </div>
-        <select value={value} onChange={(e) => setValue(e.target.value)} className="login-select">
+        <select value={value} onChange={selectGet} className="login-select">
           <option value="" disabled>Select user role</option>
           {accountList.map((item) => (
             <option key={item.accountId} value={item.accountId}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import RealEstate from '../views/realestate/list';
 import AllSelling from '../views/selling/all';
@@ -9,11 +9,12 @@ import AllDonating from '../views/donating/all';
 import DonatingDonor from '../views/donating/donor';
 import DonatingGrantee from '../views/donating/grantee';
 import AddRealEstate from '../views/realestate/add';
+import NotFound from '../views/404';
 
 function AppRouter() {
   return (
     <Router>
-        <Switch>
+        <Routes>
           <Route path="/realestate" component={RealEstate} />
           <Route path="/selling/all" component={AllSelling} />
           <Route path="/selling/me" component={MeSelling} />
@@ -25,7 +26,7 @@ function AppRouter() {
           <Route path="/404" component={NotFound} />
           <Route exact path="/" component={RealEstate} />
           <Route path="*" component={NotFound} />
-        </Switch>
+        </Routes>
     </Router>
   );
 }

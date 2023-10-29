@@ -24,7 +24,7 @@ function AppRouter() {
           <Route path="/donating/grantee" component={DonatingGrantee} />
           <Route path="/addRealestate" component={AddRealEstate} />
           <Route path="/404" component={NotFound} />
-          <Route exact path="/" component={RealEstate} />
+          <Route exact path="/" element={<RealEstate />} />
           <Route path="*" component={NotFound} />
         </Routes>
     </Router>
